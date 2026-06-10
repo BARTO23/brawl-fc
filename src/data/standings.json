@@ -1,0 +1,14 @@
+[
+  {"team":"Brawl Stars FC","played":15,"wins":9,"draws":3,"losses":3,"pts":30},
+  {"team":"Gem Gliders FC","played":15,"wins":8,"draws":4,"losses":3,"pts":28},
+  {"team":"Bounty Hunters","played":15,"wins":8,"draws":3,"losses":4,"pts":27},
+  {"team":"Safe Crackers","played":15,"wins":7,"draws":4,"losses":4,"pts":25},
+  {"team":"Goal Getters FC","played":15,"wins":6,"draws":5,"losses":4,"pts":23},
+  {"team":"Zone Controllers","played":15,"wins":6,"draws":3,"losses":6,"pts":21},
+  {"team":"KO Kings","played":15,"wins":5,"draws":5,"losses":5,"pts":20},
+  {"team":"Star Hunters","played":15,"wins":5,"draws":4,"losses":6,"pts":19},
+  {"team":"Vault Raiders","played":15,"wins":4,"draws":3,"losses":8,"pts":15},
+  {"team":"Net Breakers","played":15,"wins":3,"draws":2,"losses":10,"pts":11},
+  {"team":"Last Stand FC","played":15,"wins":2,"draws":4,"losses":9,"pts":10},
+  {"team":"Crystal Collectors","played":15,"wins":2,"draws":2,"losses":11,"pts":8}
+]

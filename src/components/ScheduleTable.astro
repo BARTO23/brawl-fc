@@ -1,0 +1,70 @@
+---
+import matchesData from "../data/matches.json";
+
+const upcoming = matchesData.filter((m) => m.result === "");
+const past = matchesData.filter((m) => m.result !== "").reverse();
+
+const modeIcons: Record<string, string> = {
+  "Gem Grab": "💎",
+  "Bounty": "🎯",
+  "Heist": "💰",
+  "Brawl Ball": "⚽",
+  "Knockout": "🥊",
+  "Hot Zone": "🔥",
+};
+
+const resultLabels: Record<string, string> = {
+  "W": "Victoria",
+  "L": "Derrota",
+  "D": "Empate",
+};
+
+const resultColors: Record<string, string> = {
+  "W": "text-green-400",
+  "L": "text-red-400",
+  "D": "text-yellow-400",
+};
+---
+
+<div class="space-y-8">
+  <section>
+    <h2 class="font-display text-xl text-bs-cyan mb-4 text-center sm:text-left" style="text-shadow: -1px 1px 0 black;">Próximos Partidos</h2>
+    <div class="space-y-3">
+      {upcoming.length > 0 ? upcoming.map((m) => (
+        <div class="bs-card p-4 flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-center sm:text-left">
+          <span class="text-2xl">{modeIcons[m.mode] || "🏆"}</span>
+          <div class="flex-1">
+            <p class="font-display text-white">{m.mode}</p>
+            <p class="font-body text-gray-400 text-sm">{m.map} vs <span class="text-bs-yellow">{m.opponent}</span></p>
+          </div>
+          <div class="text-center sm:text-right">
+            <p class="font-body text-gray-500 text-sm">{m.date}</p>
+            {m.home ? <span class="font-display text-xs text-bs-cyan">Local</span> : <span class="font-display text-xs text-gray-500">Visitante</span>}
+          </div>
+        </div>
+      )) : <p class="font-body text-gray-500 text-center">No hay partidos programados</p>}
+    </div>
+  </section>
+
+  <section>
+    <div class="bs-divider mb-4"></div>
+    <h2 class="font-display text-xl text-gray-300 mb-4 text-center sm:text-left">Resultados Recientes</h2>
+    <div class="space-y-3">
+      {past.slice(0, 10).map((m) => (
+        <div class="bs-card p-4 flex flex-col sm:flex-row items-center gap-2 sm:gap-4 opacity-80 text-center sm:text-left">
+          <span class="text-2xl">{modeIcons[m.mode] || "🏆"}</span>
+          <div class="flex-1">
+            <p class="font-display text-white">{m.mode}</p>
+            <p class="font-body text-gray-400 text-sm">{m.map} vs {m.opponent}</p>
+          </div>
+          <div class="text-center sm:text-right">
+            <span class={`bs-tag font-display text-sm ${resultColors[m.result]}`}>
+              {resultLabels[m.result]}
+            </span>
+            <p class="font-body text-gray-500 text-xs mt-1">{m.date}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+</div>

@@ -1,0 +1,31 @@
+---
+const navLinks = [
+  { href: "/", label: "Inicio" },
+  { href: "/squad", label: "Squad" },
+  { href: "/schedule", label: "Calendario" },
+  { href: "/standings", label: "Tabla" },
+  { href: "/news", label: "Noticias" },
+  { href: "/club", label: "Club" },
+];
+---
+
+<header class="bg-bs-card border-b border-bs-dark sticky top-0 z-50">
+  <nav class="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-3">
+      <img src="/assets/images/logo.png" alt="Brawl Stars FC" class="h-9 w-auto" />
+      <span class="font-display text-bs-yellow text-xl hidden sm:inline" style="text-shadow: -2px 2px 0 black;">Brawl Stars FC</span>
+    </a>
+    <ul class="flex items-center gap-1">
+      {navLinks.map((link) => (
+        <li>
+          <a
+            href={link.href}
+            class="bs-btn bs-btn-sm"
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</header>

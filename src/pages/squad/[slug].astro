@@ -1,0 +1,32 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import PlayerProfile from "../../components/PlayerProfile.astro";
+import brawlersData from "../../data/brawlers.json";
+
+export function getStaticPaths() {
+  return brawlersData.map((brawler) => ({
+    params: { slug: brawler.id },
+    props: { brawler },
+  }));
+}
+
+const { brawler } = Astro.props;
+const { name, rarity, role, position, image, stats, bio } = brawler;
+
+if (!brawler) {
+  return Astro.redirect("/404");
+}
+---
+
+<Layout>
+  <Header />
+  <main class="max-w-4xl mx-auto px-8 md:px-4 py-8 text-center md:text-left">
+    <div class="text-center md:text-left">
+      <a href="/squad" class="bs-btn bs-btn-sm mb-6">&larr; Volver a la plantilla</a>
+    </div>
+    <PlayerProfile {name} {rarity} {role} {position} {image} {stats} {bio} />
+  </main>
+  <Footer />
+</Layout>

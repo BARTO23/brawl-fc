@@ -1,0 +1,34 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Hero from "../components/Hero.astro";
+import PlayerCard from "../components/PlayerCard.astro";
+import brawlersData from "../data/brawlers.json";
+
+const featuredBrawlers = brawlersData
+  .filter((b) => b.rarity === "Legendario" || b.rarity === "Cromático")
+  .slice(0, 8);
+---
+
+<Layout>
+  <Header />
+  <main class="max-w-7xl mx-auto px-8 md:px-4 py-8 space-y-12 text-center md:text-left">
+    <Hero />
+
+    <section>
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-3 mb-6">
+        <h2 class="font-display text-2xl text-white text-center sm:text-left" style="text-shadow: -1px 1px 0 black;">Estrellas del Club</h2>
+        <a href="/squad" class="bs-btn bs-btn-cyan bs-btn-sm">Ver todos</a>
+      </div>
+      <div class="flex gap-4 overflow-x-auto pb-4 justify-center md:justify-start">
+        {featuredBrawlers.map((b) => (
+          <div class="flex-shrink-0 w-36">
+            <PlayerCard id={b.id} name={b.name} rarity={b.rarity} role={b.role} position={b.position} image={b.image} />
+          </div>
+        ))}
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>

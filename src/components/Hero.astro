@@ -1,0 +1,46 @@
+---
+import matchesData from "../data/matches.json";
+import newsData from "../data/news.json";
+
+const nextMatch = matchesData.find((m) => m.result === "");
+const latestNews = newsData[0];
+---
+
+<div class="relative overflow-hidden rounded-xl border border-bs-card" style="background: linear-gradient(135deg, #1a1a3e 0%, #0F0F23 100%);">
+  <div class="absolute inset-0 opacity-10">
+    <div class="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-bs-yellow blur-3xl"></div>
+    <div class="absolute -bottom-20 -left-20 w-80 h-80 rounded-full bg-bs-cyan blur-3xl"></div>
+  </div>
+  <div class="relative p-8 md:p-12">
+    <div class="flex flex-col sm:flex-row items-center gap-4 mb-6">
+      <img src="/assets/images/logo.png" alt="Brawl Stars FC" class="h-16 w-auto" />
+      <div>
+        <h1 class="font-display text-4xl sm:text-5xl text-bs-yellow" style="text-shadow: -3px 3px 0 black;">Brawl Stars FC</h1>
+        <p class="font-display text-gray-500 text-lg" style="text-shadow: -1px 1px 0 black;">Club de Fútbol de Starr Park</p>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6 mt-8">
+      {nextMatch && (
+        <div class="bs-card p-5">
+          <span class="font-display text-xs text-bs-cyan uppercase tracking-wider">Próximo Partido</span>
+          <p class="font-display text-white text-xl mt-1">{nextMatch.mode}</p>
+          <p class="font-body text-gray-400 text-sm">{nextMatch.map} vs <span class="text-bs-yellow">{nextMatch.opponent}</span></p>
+          <p class="font-body text-gray-500 text-xs mt-1">{nextMatch.date}</p>
+          <a href="/schedule" class="bs-btn bs-btn-cyan bs-btn-sm mt-3">Ver calendario</a>
+        </div>
+      )}
+      <div class="bs-card p-5">
+        <span class="font-display text-xs text-bs-purple uppercase tracking-wider">Última Noticia</span>
+        <p class="font-display text-white text-xl mt-1">{latestNews.title}</p>
+        <p class="font-body text-gray-400 text-sm mt-1">{latestNews.excerpt}</p>
+        <a href={`/news/${latestNews.slug}`} class="bs-btn bs-btn-sm mt-3">Leer más</a>
+      </div>
+    </div>
+
+    <div class="flex flex-wrap gap-3 mt-8 justify-center md:justify-start">
+      <a href="/squad" class="bs-btn bs-btn-gold bs-btn-lg">Ver Plantilla</a>
+      <a href="/club" class="bs-btn bs-btn-lg">Historia</a>
+    </div>
+  </div>
+</div>

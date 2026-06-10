@@ -1,0 +1,16 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import SquadGrid from "../components/SquadGrid.astro";
+---
+
+<Layout>
+  <Header />
+  <main class="max-w-7xl mx-auto px-8 md:px-4 py-8 text-center md:text-left">
+    <h1 class="font-display text-3xl sm:text-4xl text-bs-yellow mb-2 text-center sm:text-left" style="text-shadow: -2px 2px 0 black;">Plantilla</h1>
+    <p class="font-body text-gray-400 mb-8 text-center sm:text-left">Conoce a todos los brawlers que forman parte de Brawl Stars FC</p>
+    <SquadGrid />
+  </main>
+  <Footer />
+</Layout>

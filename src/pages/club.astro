@@ -1,0 +1,54 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+const trophies = [
+  { mode: "Gem Grab", wins: 3, lastWin: "2026", icon: "💎" },
+  { mode: "Bounty", wins: 2, lastWin: "2025", icon: "🎯" },
+  { mode: "Heist", wins: 1, lastWin: "2024", icon: "💰" },
+  { mode: "Brawl Ball", wins: 4, lastWin: "2026", icon: "⚽" },
+  { mode: "Knockout", wins: 2, lastWin: "2025", icon: "🥊" },
+  { mode: "Hot Zone", wins: 1, lastWin: "2026", icon: "🔥" },
+];
+---
+<Layout>
+  <Header />
+  <main class="max-w-4xl mx-auto px-8 md:px-4 py-8 space-y-12 text-center md:text-left">
+    <section>
+      <h1 class="font-display text-3xl sm:text-4xl text-bs-yellow mb-2 text-center sm:text-left" style="text-shadow: -2px 2px 0 black;">Club</h1>
+      <p class="font-body text-gray-400 mb-8 text-center sm:text-left">Historia de Brawl Stars FC</p>
+      <div class="bs-card p-6 md:p-8 space-y-4 text-center md:text-left">
+        <h2 class="font-display text-2xl text-white">Bienvenidos a Starr Park</h2>
+        <p class="font-body text-gray-400 leading-relaxed">
+          Brawl Stars FC nació en el corazón de <strong class="text-bs-yellow">Starr Park</strong>, un lugar mágico donde los brawlers más talentosos del universo se reúnen para competir en el deporte más apasionante: el fútbol.
+        </p>
+        <p class="font-body text-gray-400 leading-relaxed">
+          Fundado en 2023, el club ha crecido rápidamente gracias a la dedicación de sus jugadores y al apoyo incondicional de sus aficionados. Desde entonces, Brawl Stars FC se ha convertido en uno de los equipos más temidos de la <strong class="text-bs-cyan">Club League</strong>.
+        </p>
+        <p class="font-body text-gray-400 leading-relaxed">
+          Nuestro estadio, el <strong class="text-bs-yellow">Starr Park Arena</strong>, es conocido por su ambiente eléctrico y por ser el lugar donde los sueños se hacen realidad. Cada partido es una fiesta que reúne a brawlers de todas las rarezas y roles.
+        </p>
+        <p class="font-body text-gray-400 leading-relaxed">
+          En Brawl Stars FC, creemos en los valores del trabajo en equipo, la perseverancia y la diversión. No importa si eres Común, Super, Épico, Cromático o Legendario - aquí todos tienen un lugar y una oportunidad de brillar.
+        </p>
+      </div>
+    </section>
+    <section>
+      <div class="bs-divider mb-6"></div>
+      <h2 class="font-display text-2xl text-bs-yellow mb-6 text-center sm:text-left" style="text-shadow: -1px 1px 0 black;">Palmarés</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+        {trophies.map((t) => (
+          <div class="bs-card p-6 text-center">
+            <span class="text-4xl block mb-2">{t.icon}</span>
+            <h3 class="font-display text-white">{t.mode}</h3>
+            <p class="font-display text-bs-yellow text-3xl my-1">{t.wins}</p>
+            <p class="font-body text-gray-500 text-sm">{t.wins === 1 ? "título" : "títulos"}</p>
+            <p class="font-body text-gray-500 text-xs mt-1">Último: {t.lastWin}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>

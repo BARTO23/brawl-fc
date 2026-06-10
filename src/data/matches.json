@@ -1,0 +1,20 @@
+[
+  {"date":"2026-01-15","mode":"Gem Grab","map":"Double Swoosh","result":"W","opponent":"Gem Gliders FC","home":true},
+  {"date":"2026-01-22","mode":"Bounty","map":"Snake Prairie","result":"W","opponent":"Bounty Hunters","home":false},
+  {"date":"2026-01-29","mode":"Heist","map":"Hot Potato","result":"L","opponent":"Safe Crackers","home":true},
+  {"date":"2026-02-05","mode":"Brawl Ball","map":"Pinhole Punt","result":"W","opponent":"Goal Getters FC","home":false},
+  {"date":"2026-02-12","mode":"Knockout","map":"Out in the Open","result":"D","opponent":"KO Kings","home":true},
+  {"date":"2026-02-19","mode":"Hot Zone","map":"Dueling Beetles","result":"W","opponent":"Zone Controllers","home":false},
+  {"date":"2026-02-26","mode":"Gem Grab","map":"Undermine","result":"W","opponent":"Crystal Collectors","home":true},
+  {"date":"2026-03-05","mode":"Bounty","map":"Layer Cake","result":"L","opponent":"Star Hunters","home":false},
+  {"date":"2026-03-12","mode":"Heist","map":"Bridge Too Far","result":"W","opponent":"Vault Raiders","home":true},
+  {"date":"2026-03-19","mode":"Brawl Ball","map":"Super Stadium","result":"W","opponent":"Net Breakers","home":true},
+  {"date":"2026-03-26","mode":"Knockout","map":"Goldarm Gulch","result":"D","opponent":"Last Stand FC","home":false},
+  {"date":"2026-04-02","mode":"Hot Zone","map":"Parallel Plays","result":"W","opponent":"Zone Warriors","home":true},
+  {"date":"2026-04-09","mode":"Gem Grab","map":"Hard Rock Mine","result":"D","opponent":"Gem Guardians","home":false},
+  {"date":"2026-04-16","mode":"Bounty","map":"Hideout","result":"W","opponent":"Bounty Crew","home":true},
+  {"date":"2026-04-23","mode":"Heist","map":"Kaboom Canyon","result":"L","opponent":"Safe Smashers","home":false},
+  {"date":"2026-05-07","mode":"Gem Grab","map":"Last Stop","result":"","opponent":"Gem Masters","home":true},
+  {"date":"2026-05-14","mode":"Bounty","map":"Shooting Star","result":"","opponent":"Bounty Elite","home":false},
+  {"date":"2026-05-21","mode":"Brawl Ball","map":"Center Stage","result":"","opponent":"Ball Masters","home":true}
+]

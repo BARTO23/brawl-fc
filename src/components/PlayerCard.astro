@@ -1,0 +1,47 @@
+---
+export interface Props {
+  id: string;
+  name: string;
+  rarity: string;
+  role: string;
+  position: string;
+  image: string;
+}
+
+const { id, name, rarity, role, position, image } = Astro.props;
+
+const isUltra = rarity === "Ultra Legendario";
+
+const rarityColors: Record<string, string> = {
+  "Inicial": "#BDBDBD",
+  "Raro": "#4CAF50",
+  "Súper Raro": "#2196F3",
+  "Épico": "#9C27B0",
+  "Mítico": "#F44336",
+  "Legendario": "#FFC107",
+  "Ultra Legendario": "#FFD700",
+};
+
+const borderColor = rarityColors[rarity] || "#9e9e9e";
+---
+
+<a href={`/squad/${id}`} class="block">
+  <div class="bs-card overflow-hidden transition-transform hover:scale-105" style={`border-color: ${borderColor};`}>
+    <div class="h-24 overflow-hidden bg-gray-900 relative flex items-end justify-start">
+      <img src={image} alt={name} class="w-full h-full object-contain object-left-bottom" loading="lazy" />
+    </div>
+    <div class="border-t" style={`border-color: ${borderColor};`}></div>
+    <div class="p-1.5 text-center space-y-0.5">
+      <h3 class="font-display text-white text-xs truncate leading-tight">{name}</h3>
+      <div class="flex flex-col items-center gap-px">
+        <span class={`bs-tag bs-tag-sm${isUltra ? " ultra-legendary" : ""}`} style={isUltra ? "color: white;" : `background-color: ${borderColor}; color: white;`}>
+          {rarity}
+        </span>
+        <span class="bs-tag bs-tag-sm bg-gray-700 text-gray-300">
+          {role}
+        </span>
+      </div>
+      <span class="font-display text-[0.6rem] text-bs-cyan block leading-tight">{position}</span>
+    </div>
+  </div>
+</a>

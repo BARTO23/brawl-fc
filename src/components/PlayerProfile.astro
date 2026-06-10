@@ -1,0 +1,76 @@
+---
+export interface Props {
+  name: string;
+  rarity: string;
+  role: string;
+  position: string;
+  image: string;
+  stats: { speed: number; attack: number; defense: number };
+  bio: string;
+}
+
+const { name, rarity, role, position, image, stats, bio } = Astro.props;
+
+const isUltra = rarity === "Ultra Legendario";
+
+const rarityColors: Record<string, string> = {
+  "Inicial": "#BDBDBD",
+  "Raro": "#4CAF50",
+  "Súper Raro": "#2196F3",
+  "Épico": "#9C27B0",
+  "Mítico": "#F44336",
+  "Legendario": "#FFC107",
+  "Ultra Legendario": "#FFD700",
+};
+
+const borderColor = rarityColors[rarity] || "#9e9e9e";
+
+const statLabels = [
+  { key: "speed", label: "Velocidad" },
+  { key: "attack", label: "Ataque" },
+  { key: "defense", label: "Defensa" },
+] as const;
+---
+
+<div class="bs-card overflow-hidden" style={`border-color: ${borderColor};`}>
+  <div class="md:flex">
+    <div class="md:w-1/3 p-6 flex items-center justify-center bg-gradient-to-b from-gray-800 to-bs-dark">
+      <img src={image} alt={name} class="w-48 h-48 object-contain" />
+    </div>
+    <div class="md:w-2/3 p-6 space-y-4">
+      <div>
+        <h1 class="font-display text-3xl text-white">{name}</h1>
+        <div class="flex gap-2 mt-2">
+          <span class={`bs-tag${isUltra ? " ultra-legendary" : ""}`} style={isUltra ? "color: white;" : `background-color: ${borderColor}; color: white;`}>
+            {rarity}
+          </span>
+          <span class="bs-tag bg-gray-700 text-gray-300">
+            {role}
+          </span>
+          <span class="bs-tag bg-bs-cyan text-bs-dark">
+            {position}
+          </span>
+        </div>
+      </div>
+      <p class="font-body text-gray-400 leading-relaxed">{bio}</p>
+      <div class="space-y-2">
+        <h3 class="font-display text-lg text-bs-yellow">Estadísticas</h3>
+        {statLabels.map(({ key, label }) => {
+          const val = stats[key as keyof typeof stats];
+          return (
+            <div class="flex items-center gap-3">
+              <span class="font-body text-gray-300 text-sm w-24">{label}</span>
+              <div class="bs-progress flex-1">
+                <div
+                  class={`bs-progress-bar${isUltra ? " ultra-legendary" : ""}`}
+                  style={`width: ${(val / 5) * 100}%;${isUltra ? "" : ` background-color: ${borderColor};`}`}
+                ></div>
+              </div>
+              <span class="font-display text-white text-sm w-6">{val}/5</span>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </div>
+</div>

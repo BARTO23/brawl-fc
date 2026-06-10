@@ -1,0 +1,31 @@
+---
+export interface Props {
+  title: string;
+  date: string;
+  category: string;
+  slug: string;
+  excerpt: string;
+}
+
+const { title, date, category, slug, excerpt } = Astro.props;
+
+const categoryColors: Record<string, string> = {
+  "Fichaje": "background: #FEBE20; color: #1a1a2e;",
+  "Temporada": "background: #00E5FF; color: #1a1a2e;",
+  "Balance": "background: #9B59B6; color: white;",
+  "Partido": "background: #2CD730; color: #1a1a2e;",
+  "Club": "background: #0ea5e9; color: white;",
+};
+const catColor = categoryColors[category] || "background: #4a4a7a; color: white;";
+---
+
+<a href={`/news/${slug}`} class="block bs-card overflow-hidden">
+    <div class="p-5">
+      <div class="flex items-center justify-center md:justify-start gap-2 mb-2">
+        <span class="bs-tag font-display text-xs" style={catColor}>{category}</span>
+        <span class="font-body text-gray-500 text-xs">{date}</span>
+      </div>
+      <h3 class="font-display text-white text-lg mb-2">{title}</h3>
+      <p class="font-body text-gray-400 text-sm leading-relaxed">{excerpt}</p>
+    </div>
+</a>

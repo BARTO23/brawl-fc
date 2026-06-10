@@ -1,0 +1,43 @@
+---
+import standingsData from "../data/standings.json";
+---
+
+<div class="overflow-x-auto text-center md:text-left">
+  <table class="w-full text-left border-collapse">
+    <thead>
+      <tr class="font-display text-gray-400 text-sm uppercase border-b border-gray-700">
+        <th class="py-3 px-2">#</th>
+        <th class="py-3 px-2">Equipo</th>
+        <th class="py-3 px-2 text-center">PJ</th>
+        <th class="py-3 px-2 text-center">PG</th>
+        <th class="py-3 px-2 text-center">PE</th>
+        <th class="py-3 px-2 text-center">PP</th>
+        <th class="py-3 px-2 text-center text-bs-yellow">Pts</th>
+      </tr>
+    </thead>
+    <tbody>
+      {standingsData
+        .sort((a, b) => b.pts - a.pts)
+        .map((team, i) => {
+          const isBs = team.team === "Brawl Stars FC";
+          return (
+            <tr class={`border-b border-gray-800 ${isBs ? "bg-bs-yellow bg-opacity-10" : "hover:bg-gray-800"}`}>
+              <td class="py-3 px-2">
+                <span class="bs-badge" style={`background: ${isBs ? '#FFD700' : '#4a4a7a'}; color: ${isBs ? '#1a1a2e' : 'white'};`}>{i + 1}</span>
+              </td>
+              <td class="py-3 px-2">
+                <span class={`font-display ${isBs ? "text-bs-yellow" : "text-white"}`}>
+                  {team.team}
+                </span>
+              </td>
+              <td class="py-3 px-2 text-center font-body text-gray-300">{team.played}</td>
+              <td class="py-3 px-2 text-center font-body text-green-400">{team.wins}</td>
+              <td class="py-3 px-2 text-center font-body text-yellow-400">{team.draws}</td>
+              <td class="py-3 px-2 text-center font-body text-red-400">{team.losses}</td>
+              <td class="py-3 px-2 text-center font-display text-lg">{team.pts}</td>
+            </tr>
+          );
+        })}
+    </tbody>
+  </table>
+</div>

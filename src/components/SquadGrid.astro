@@ -1,0 +1,78 @@
+---
+import PlayerCard from "./PlayerCard.astro";
+import brawlersData from "../data/brawlers.json";
+
+const rarities = [...new Set(brawlersData.map((b) => b.rarity))];
+const roles = [...new Set(brawlersData.map((b) => b.role))];
+---
+
+<div class="space-y-6">
+  <div id="filters" class="flex flex-wrap gap-3 items-center justify-center md:justify-start">
+    <div class="flex flex-wrap gap-2">
+      <button data-filter="rarity" data-value="all" class="filter-btn bs-btn bs-btn-gold bs-btn-sm active">
+        Todas
+      </button>
+      {rarities.map((r) => (
+        <button data-filter="rarity" data-value={r} class="filter-btn bs-btn bs-btn-sm">
+          {r}
+        </button>
+      ))}
+    </div>
+    <span class="text-gray-500 text-sm font-display">|</span>
+    <div class="flex flex-wrap gap-2">
+      <button data-filter="role" data-value="all" class="filter-btn bs-btn bs-btn-cyan bs-btn-sm active">
+        Todos
+      </button>
+      {roles.map((r) => (
+        <button data-filter="role" data-value={r} class="filter-btn bs-btn bs-btn-sm">
+          {r}
+        </button>
+      ))}
+    </div>
+  </div>
+
+  <div id="squad-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+    {brawlersData.map((brawler) => (
+      <div class="brawler-card" data-rarity={brawler.rarity} data-role={brawler.role}>
+        <PlayerCard
+          id={brawler.id}
+          name={brawler.name}
+          rarity={brawler.rarity}
+          role={brawler.role}
+          position={brawler.position}
+          image={brawler.image}
+        />
+      </div>
+    ))}
+  </div>
+</div>
+
+<script>
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest(".filter-btn");
+    if (!btn) return;
+
+    const filterType = btn.dataset.filter;
+    const filterValue = btn.dataset.value;
+    const group = btn.parentElement;
+
+    group.querySelectorAll(".filter-btn").forEach((b) => {
+      b.classList.remove("active", "bs-btn-gold", "bs-btn-cyan");
+    });
+    if (filterType === "rarity") {
+      btn.classList.add("bs-btn-gold");
+    } else {
+      btn.classList.add("bs-btn-cyan");
+    }
+    btn.classList.add("active");
+
+    const rarityFilter = document.querySelector('[data-filter="rarity"].active')?.dataset.value || "all";
+    const roleFilter = document.querySelector('[data-filter="role"].active')?.dataset.value || "all";
+
+    document.querySelectorAll(".brawler-card").forEach((card) => {
+      const matchesRarity = rarityFilter === "all" || card.dataset.rarity === rarityFilter;
+      const matchesRole = roleFilter === "all" || card.dataset.role === roleFilter;
+      card.style.display = matchesRarity && matchesRole ? "" : "none";
+    });
+  });
+</script>
